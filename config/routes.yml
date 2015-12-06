@@ -1,0 +1,4 @@
+silex_home:
+    path: /
+    defaults: { _controller: 'DBiagi\Controller\IndexController::indexAction' }
+    
