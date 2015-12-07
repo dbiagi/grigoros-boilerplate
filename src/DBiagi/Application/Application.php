@@ -1,6 +1,6 @@
 <?php
 
-namespace DBiagi;
+namespace DBiagi\Application;
 
 use Silex\Application as SilexApplication;
 use Symfony\Component\Routing\RouteCollection;
@@ -14,31 +14,35 @@ use Symfony\Component\Config\FileLocator;
  */
 class Application extends SilexApplication {
 
-    private $srcDir = __DIR__;
-    private $configDir = __DIR__ . '/../../config';
-    private $webDir = __DIR__ . '/../../web';
-    private $viewDir = __DIR__ . '/Resources/views';
-    private $cacheDir = __DIR__ . '/../../cache/twig';
+    private $srcDir;
+    private $configDir;
+    private $webDir;
+    private $viewDir;
+    private $cacheDir;
     private $env;
 
     /**
      * Application constructor.
      * @param string Application enviroment.
      */
-    public function __construct($enviroment = 'dev') {
+    public function __construct(array $configs) {
         parent::__construct();
-        $this->env = $enviroment;
+        
+        $this->env = isset($configs['enviroment']) ? $configs['enviroment'] : '';
+        $this->configDir = isset($configs['config_dir']) ? $configs['config_dir'] : '';
+        $this->webDir = isset($configs['web_dir']) ? $configs['web_dir'] : '';
+        $this->cacheDir = isset($configs['cache_dir']) ? $configs['cache_dir'] : '';
+        $this->srcDir = isset($configs['sources_dir']) ? $configs['sources_dir'] : '';
+        $this->viewDir = isset($configs['views_dir']) ? $configs['views_dir'] : '';
+        
         $this->configureRoutes();
         $this->registerProviders();
-        $this->configure();
+        
     }
 
-    private function configure() {
-        $this['debug'] = true;
-    }
 
     private function configureRoutes() {
-        $this['routes'] = $this->extend('routes', function (RouteCollection $routes, \DBiagi\Application $app) {
+        $this['routes'] = $this->extend('routes', function (RouteCollection $routes, Application $app) {
             $loader = new YamlFileLoader(new FileLocator($app->getConfigDir()));
             $collection = $loader->load('routes.yml');
             $routes->addCollection($collection);
@@ -60,6 +64,7 @@ class Application extends SilexApplication {
             ],
             'twig.path' => $this->getViewDir(),
         ]);
+        $this->register(new \Igorw\Silex\ConfigServiceProvider($this->configDir . '/config_' . $this->getEnviroment() . '.yml'));
     }
 
     /**
