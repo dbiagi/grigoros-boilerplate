@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div>
+
+        <h1>Silex App</h1>
+
+        <ul>
+            {% for user in data %}
+                <li>
+                    {{ user.username }} | {{ user.roles }}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock content %}

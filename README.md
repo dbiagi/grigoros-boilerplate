@@ -3,7 +3,6 @@ A silex application skeleton.
 
 TODO
 * Monolog provider
-* Doctrine provider
+* Doctrine ORM provider
 * Swiftmailer provider
 * Assetic provider
-* Security provider

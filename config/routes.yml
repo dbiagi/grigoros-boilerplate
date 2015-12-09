@@ -1,4 +1,7 @@
 silex_home:
     path: /
-    defaults: { _controller: 'DBiagi\Controller\IndexController::indexAction' }
+    defaults: { _controller: 'Controller\IndexController::indexAction' }
     
+silex_admin:
+    path: /admin
+    defaults: { _controller: 'Controller\SecurityController::adminAction' }
