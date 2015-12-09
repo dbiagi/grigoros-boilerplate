@@ -7,7 +7,7 @@ use Monolog\Formatter\FormatterInterface;
 /**
  * Description of DefaultFormatter
  *
- * @author Diego Viana <diego.viana@lecom.com.br>
+ * @author Diego Biagi <diego.viana@lecom.com.br>
  */
 class DefaultFormatter implements FormatterInterface{
     public function format(array $record) {

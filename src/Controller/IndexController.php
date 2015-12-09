@@ -10,7 +10,7 @@ use Doctrine\DBAL\Connection;
 /**
  * Description of IndexController
  *
- * @author Diego Viana <diegviana@gmail.com>
+ * @author Diego Biagi <diegviana@gmail.com>
  */
 class IndexController {
 

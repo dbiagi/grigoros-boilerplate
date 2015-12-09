@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Description of SecurityController
  *
- * @author Diego Viana <diego.viana@lecom.com.br>
+ * @author Diego Biagi <diego.viana@lecom.com.br>
  */
 class SecurityController {
     

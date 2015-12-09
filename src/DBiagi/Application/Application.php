@@ -10,7 +10,7 @@ use Symfony\Component\Config\FileLocator;
 /**
  * Description of Main
  *
- * @author Diego Viana <diegobiagiviana@gmail.com>
+ * @author Diego Biagi <diegobiagiviana@gmail.com>
  */
 class Application extends SilexApplication {
 

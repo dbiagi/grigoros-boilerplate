@@ -9,7 +9,7 @@ use DBiagi\Application\Application;
 /**
  * Description of IndexController
  *
- * @author Diego Viana <diegobiagiviana@gmail.com>
+ * @author Diego Biagi <diegobiagiviana@gmail.com>
  */
 class IndexController {
     

@@ -5,7 +5,7 @@ namespace Application;
 /**
  * Description of Enviroment
  *
- * @author Diego Viana <diegviana@gmail.com>
+ * @author Diego Biagi <diegviana@gmail.com>
  */
 class Enviroment {
     const DEV = 'dev';
