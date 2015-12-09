@@ -27,19 +27,17 @@ class Application extends SilexApplication {
      */
     public function __construct(array $configs) {
         parent::__construct();
-        
+
         $this->env = isset($configs['enviroment']) ? $configs['enviroment'] : '';
         $this->configDir = isset($configs['config_dir']) ? $configs['config_dir'] : '';
         $this->webDir = isset($configs['web_dir']) ? $configs['web_dir'] : '';
         $this->cacheDir = isset($configs['cache_dir']) ? $configs['cache_dir'] : '';
         $this->srcDir = isset($configs['sources_dir']) ? $configs['sources_dir'] : '';
         $this->viewDir = isset($configs['views_dir']) ? $configs['views_dir'] : '';
-        
+
         $this->configureRoutes();
         $this->registerProviders();
-        
     }
-
 
     private function configureRoutes() {
         $this['routes'] = $this->extend('routes', function (RouteCollection $routes, Application $app) {
@@ -52,19 +50,45 @@ class Application extends SilexApplication {
     }
 
     private function registerProviders() {
-        $this->register(new \Silex\Provider\DoctrineServiceProvider());
+        $this->register(new \Silex\Provider\DoctrineServiceProvider(), [
+            'dbs.options' => array(
+                'mysql_read' => array(
+                    'driver' => 'pdo_mysql',
+                    'host' => 'mysql_read.someplace.tld',
+                    'dbname' => 'my_database',
+                    'user' => 'my_username',
+                    'password' => 'my_password',
+                    'charset' => 'utf8mb4',
+                ),
+                'mysql_write' => array(
+                    'driver' => 'pdo_mysql',
+                    'host' => 'mysql_write.someplace.tld',
+                    'dbname' => 'my_database',
+                    'user' => 'my_username',
+                    'password' => 'my_password',
+                    'charset' => 'utf8mb4',
+                ),
+            ),
+        ]);
+
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
+
         $this->register(new \Silex\Provider\TwigServiceProvider(), [
             'twig.options' => [
                 'charset' => 'utf-8',
                 'cache' => $this->getCacheDir(),
                 'strict_variables' => true,
-                'auto_reload' => $this->getEnviroment() == 'dev',
-                'debug' => $this->getEnviroment() == 'dev'
+                'auto_reload' => $this->getEnviroment() == Enviroment::DEV,
+                'debug' => $this->getEnviroment() == Enviroment::DEV
             ],
             'twig.path' => $this->getViewDir(),
         ]);
+
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->configDir . '/config_' . $this->getEnviroment() . '.yml'));
+
+        $this->register(new \Silex\Provider\HttpCacheServiceProvider(), [
+            'http_cache.cache_dir' => $this->getCacheDir()
+        ]);
     }
 
     /**
