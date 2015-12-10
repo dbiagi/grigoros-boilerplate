@@ -6,6 +6,7 @@ use Silex\Application as SilexApplication;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Description of Main
@@ -15,7 +16,12 @@ use Symfony\Component\Config\FileLocator;
 class Application extends SilexApplication {
 
     private $rootDir;
-
+    
+    /**
+     * @var Filesystem
+     */
+    private $fs;
+    
     /**
      * Application constructor.
      * @param string Application enviroment.
@@ -25,7 +31,7 @@ class Application extends SilexApplication {
         
         $this->env = $enviroment;
         $this->rootDir = $rootDir;
-        
+        $this->fs = new Filesystem();
         $this->configureRoutes();
         $this->registerProviders();
     }
@@ -46,6 +52,7 @@ class Application extends SilexApplication {
     private function registerProviders() {
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/config_' . $this->getEnviroment() . '.yml'));
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/security' . '.yml'));
+        $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/parameters' . '.yml'));
         $this->register(new \Silex\Provider\MonologServiceProvider(), [
             'monolog.logfile' => $this->getLogFile()
         ]);
@@ -54,13 +61,24 @@ class Application extends SilexApplication {
         $this->register(new \Silex\Provider\RememberMeServiceProvider());
         $this->register(new \Silex\Provider\SessionServiceProvider());
         $this->register(new \Silex\Provider\SerializerServiceProvider());
-        $this->register(new \Silex\Provider\DoctrineServiceProvider());
-        $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
-        $this->register(new \Silex\Provider\MonologServiceProvider(), [
-            'monolog.logfile' => $this->getLogDir() . '/' . $this->getEnviroment() . '.log',
+        $this->register(new \Silex\Provider\DoctrineServiceProvider());    
+        $this->register(new \Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),[
+            'orm.proxies_dir' => $this->rootDir . '/Entity/Proxy',
+            'orm.em.options' => [
+                'mappings' => [
+                    [
+                        'type' => 'annotation',
+                        'namespace' => 'Entity',
+                        'path' => $this->rootDir . '/Entity'
+                    ],
+                    [
+                        'type' => 'simple_yml',
+                        'namespace' => 'Entity',
+                        'path' => $this->getConfigDir() . '/doctrine'
+                    ]
+                ]
+            ]
         ]);
-        
-
         $this->register(new \Silex\Provider\TwigServiceProvider(), [
             'twig.options' => [
                 'charset' => 'utf-8',
@@ -117,7 +135,7 @@ class Application extends SilexApplication {
         $cacheDir = $this->rootDir . '/cache';
         
         if(!is_dir($cacheDir)){
-            @mkdir($cacheDir);
+            $fs->mkdir($cacheDir, 0640);
         }
         
         return $cacheDir;
@@ -129,12 +147,19 @@ class Application extends SilexApplication {
      */
     public function getLogFile(){
         $logDir = $this->rootDir . '/log';
+        $logFile = $logDir . '/' . $this->getEnviroment() . '.log';
         
+        //Create dir is not exists
         if(!is_dir($logDir)){
-            mkdir($logDir);
+            $this->fs->mkdir($logDir, 0640);
         }
         
-        return $logDir . '/' . $this->getEnviroment() . '.log';
+        //If on dev env, reset the log file on every request
+        if($this->getEnviroment() === Enviroment::DEV){
+            $this->fs->dumpFile($logFile, '');
+        }
+        
+        return $logFile;
     }
 
     /**

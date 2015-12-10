@@ -1,9 +1,1 @@
-debug: false
-
-db.options:
-   driver: pdo_mysql
-   dbname: generic
-   user: root
-   password: 1234
-   host: localhost
-   
+debug: true
