@@ -41,7 +41,7 @@ class Application extends SilexApplication {
             $loader = new YamlFileLoader(new FileLocator($app->getConfigDir()));
             $collection = $loader->load('routes.yml');
             $routes->addCollection($collection);
-
+            
             return $routes;
         });
     }
@@ -72,8 +72,18 @@ class Application extends SilexApplication {
                         'path' => $this->rootDir . '/Entity'
                     ],
                     [
+                        'type' => 'annotation',
+                        'namespace' => 'Model',
+                        'path' => $this->rootDir . '/Entity'
+                    ],
+                    [
                         'type' => 'simple_yml',
                         'namespace' => 'Entity',
+                        'path' => $this->getConfigDir() . '/doctrine'
+                    ],
+                    [
+                        'type' => 'simple_yml',
+                        'namespace' => 'Model',
                         'path' => $this->getConfigDir() . '/doctrine'
                     ]
                 ]
@@ -135,7 +145,7 @@ class Application extends SilexApplication {
         $cacheDir = $this->rootDir . '/cache';
         
         if(!is_dir($cacheDir)){
-            $fs->mkdir($cacheDir, 0640);
+            $this->fs->mkdir($cacheDir, 0640);
         }
         
         return $cacheDir;

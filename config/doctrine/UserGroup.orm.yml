@@ -1,0 +1,15 @@
+DBiagi\UserBundle\Entity\UserGroup:
+    type: entity
+    table: user_group
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToMany:
+        users:
+            targetEntity: User
+            mappedBy: groups
+    
+    lifecycleCallbacks: {  }

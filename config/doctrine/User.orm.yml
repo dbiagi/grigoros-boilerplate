@@ -1,0 +1,24 @@
+DBiagi\UserBundle\Entity\User:
+    type: entity
+    table: user
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    
+    manyToMany:
+        groups:
+            targetEntity: UserGroup
+            inversedBy: users
+            cascade: ["persist"]
+            joinTable:
+                name: user_x_group
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+            inverseJoinColumns:
+                group_id:
+                    referencedColumnName: id
+    lifecycleCallbacks: {  }
