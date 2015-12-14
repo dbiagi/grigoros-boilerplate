@@ -5,3 +5,7 @@ silex_home:
 silex_admin:
     path: /admin
     defaults: { _controller: 'Controller\SecurityController::adminAction' }
+    
+rss_test:
+    path: /rss
+    defaults: { _controller: 'Controller\IndexController::rssAction' }

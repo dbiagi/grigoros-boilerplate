@@ -38,4 +38,38 @@ class IndexController {
         return $response;
     }
 
+    public function rssAction(Application $app, Request $request){
+        $rss = new \SimpleXMLElement('<rss xmlns:g="http://base.google.com/ns/1.0" xmlns:c="http://base.google.com/cns/1.0"></rss>');
+        $rss->addAttribute('version', '2.0');
+        
+        $collection = [
+            ['Nome' => 'EIIITçã', 'Email' => 'Eita@treta.com', 'Endereco' => 'Botocudos'],
+            ['Nome' => 'Oloco áá Bixo', 'Email' => 'Eita@treta.com', 'Endereco' => 'Botocudos'],
+            ['Nome' => 'Oloco Bixo', 'Email' => 'Eita@treta.com', 'Endereco' => 'Botocudos'],
+            ['Nome' => 'Oloco Bixo', 'Email' => 'Eita@treta.com', 'Endereco' => 'Botocudos'],
+            ['Nome' => 'Oloco Bixo', 'Email' => 'Eita@treta.com', 'Endereco' => 'Botocudos'],
+            ['Nome' => 'Oloco Bixo', 'Email' => 'Eita@treta.com', 'Endereco' => 'Botocudos'],
+            ['Nome' => 'Oloco Bixo', 'Email' => 'Eita@tretaá.com', 'Endereco' => 'Botocudos'],
+        ];
+        
+        foreach($collection as $data){
+            $item = $rss->addChild('item');
+            
+            foreach($data as $title => $value){
+                $item->addChild(strtolower($title), $value);
+            }
+        }
+        
+        $dom = new \DOMDocument();
+        $dom->preserveWhiteSpace = true;
+        $dom->formatOutput = true;
+        $dom->loadXML($rss->asXML());
+        
+        $response = new Response($dom->saveXML(), 200, [
+            'Content-Type' => 'application/rss+xml'
+        ]);
+        
+        
+        return $response;
+    }
 }

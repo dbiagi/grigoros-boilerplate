@@ -16,7 +16,10 @@ class ConsoleProvider implements ServiceProviderInterface{
 
     public function register(Application $app) {
         $app['console'] = $app->share(function() use ($app){
-            $consoleApplication = new ConsoleApplication();
+            $consoleApplication = new ConsoleApplication(
+                $app['console.name'],
+                $app['console.version']
+                );
             
         });
     }

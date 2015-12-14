@@ -69,12 +69,12 @@ class Application extends SilexApplication {
                     [
                         'type' => 'annotation',
                         'namespace' => 'Entity',
-                        'path' => $this->rootDir . '/Entity'
+                        'path' => $this->getSrcDir() . '/Entity'
                     ],
                     [
                         'type' => 'annotation',
                         'namespace' => 'Model',
-                        'path' => $this->rootDir . '/Entity'
+                        'path' => $this->getSrcDir() . '/Model'
                     ],
                     [
                         'type' => 'simple_yml',
