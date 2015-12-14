@@ -103,6 +103,8 @@ class Application extends SilexApplication {
         $this->register(new \Silex\Provider\HttpCacheServiceProvider(), [
             'http_cache.cache_dir' => $this->getCacheDir()
         ]);
+        
+        $this->register(new \Provider\ConsoleProvider());
     }
 
     /**
