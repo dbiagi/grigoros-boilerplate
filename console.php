@@ -2,6 +2,16 @@
 
 require_once 'vendor/autoload.php';
 
+use Application\Application;
+use Application\Enviroment;
+
+$app = new Application(Enviroment::DEV, __DIR__);
+
+$app->boot();
+
+$app['console']->run();
+
+/*
 $em = $app['orm.em'];
 
 $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
@@ -33,3 +43,4 @@ $console->addCommands(array(
     new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand(),
 
 ));
+*/

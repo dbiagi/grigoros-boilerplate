@@ -13,6 +13,7 @@ use PDOStatement;
  *
  * Class MySQLHandler
  * @package wazaari\MysqlHandler
+ * @TODO Test this class and create a provider to this.
  */
 class MySQLHandler extends AbstractProcessingHandler {
 

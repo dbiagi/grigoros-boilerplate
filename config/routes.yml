@@ -9,3 +9,4 @@ silex_admin:
 rss_test:
     path: /rss
     defaults: { _controller: 'Controller\IndexController::rssAction' }
+    

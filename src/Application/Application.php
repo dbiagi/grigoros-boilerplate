@@ -18,11 +18,6 @@ class Application extends SilexApplication {
     private $rootDir;
     
     /**
-     * @var Filesystem
-     */
-    private $fs;
-    
-    /**
      * Application constructor.
      * @param string Application enviroment.
      */
@@ -31,8 +26,9 @@ class Application extends SilexApplication {
         
         $this->env = $enviroment;
         $this->rootDir = $rootDir;
-        $this->fs = new Filesystem();
+        
         $this->configureRoutes();
+        $this->registerServices();
         $this->registerProviders();
     }
 
@@ -103,8 +99,17 @@ class Application extends SilexApplication {
         $this->register(new \Silex\Provider\HttpCacheServiceProvider(), [
             'http_cache.cache_dir' => $this->getCacheDir()
         ]);
+        $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
+        $this->register(new \Provider\ConsoleProvider());
     }
 
+    
+    private function registerServices(){
+        //Register filesystem service
+        $this['filesystem'] = $this->share(function(){
+            return new Filesystem();
+        });
+    }
     /**
      * Get configuration directory absolute path.
      * @return string
@@ -145,7 +150,7 @@ class Application extends SilexApplication {
         $cacheDir = $this->rootDir . '/cache';
         
         if(!is_dir($cacheDir)){
-            $this->fs->mkdir($cacheDir, 0640);
+            $this['filesystem']->mkdir($cacheDir, 0640);
         }
         
         return $cacheDir;
@@ -161,12 +166,12 @@ class Application extends SilexApplication {
         
         //Create dir is not exists
         if(!is_dir($logDir)){
-            $this->fs->mkdir($logDir, 0640);
+            $this['filesystem']->mkdir($logDir, 0640);
         }
         
         //If on dev env, reset the log file on every request
         if($this->getEnviroment() === Enviroment::DEV){
-            $this->fs->dumpFile($logFile, '');
+            $this['filesystem']->dumpFile($logFile, '');
         }
         
         return $logFile;
