@@ -39,7 +39,7 @@ class IndexController {
     }
 
     public function rssAction(Application $app, Request $request){
-        $rss = new \SimpleXMLElement('<rss xmlns:g="http://base.google.com/ns/1.0" xmlns:c="http://base.google.com/cns/1.0"></rss>');
+        $rss = new \SimpleXMLElement('<rss xmlns:atom="http://www.w3.org/2005/Atom"></rss>');
         $rss->addAttribute('version', '2.0');
         
         $collection = [

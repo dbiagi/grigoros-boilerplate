@@ -24,8 +24,13 @@
         "igorw/config-service-provider": "^1.2",
         "doctrine/dbal": "~2.2",
         "monolog/monolog": "^1.17",
-        "dflydev/doctrine-orm-service-provider": "^1.0"
+        "dflydev/doctrine-orm-service-provider": "^1.0",
+        "fzaninotto/faker": "^1.5"
         
+    },
+    "require-dev": {
+        "symfony/browser-kit": "^3.0",
+        "symfony/css-selector": "^3.0"
     },
     "autoload": {
         "psr-4": {

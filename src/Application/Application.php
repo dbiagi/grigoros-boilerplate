@@ -15,7 +15,17 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class Application extends SilexApplication {
 
+    /**
+     * Absolute root dir path.
+     * @var string
+     */
     private $rootDir;
+    
+    /**
+     * Enviromment variable.
+     * @var string
+     */
+    private $env;
     
     /**
      * Application constructor.
@@ -44,11 +54,11 @@ class Application extends SilexApplication {
 
     /**
      * Register the providers.
+     * @return void
      */
     private function registerProviders() {
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/config_' . $this->getEnviroment() . '.yml'));
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/security' . '.yml'));
-        $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/parameters' . '.yml'));
         $this->register(new \Silex\Provider\MonologServiceProvider(), [
             'monolog.logfile' => $this->getLogFile()
         ]);
@@ -90,12 +100,11 @@ class Application extends SilexApplication {
                 'charset' => 'utf-8',
                 'cache' => $this->getCacheDir(),
                 'strict_variables' => true,
-                'auto_reload' => $this->getEnviroment() == Enviroment::DEV,
-                'debug' => $this->getEnviroment() == Enviroment::DEV
+                'auto_reload' => $this->getEnviroment() === Enviroment::DEV,
+                'debug' => $this->getEnviroment() === Enviroment::DEV
             ],
             'twig.path' => $this->getViewDir(),
         ]);
-
         $this->register(new \Silex\Provider\HttpCacheServiceProvider(), [
             'http_cache.cache_dir' => $this->getCacheDir()
         ]);
@@ -103,13 +112,17 @@ class Application extends SilexApplication {
         $this->register(new \Provider\ConsoleProvider());
     }
 
-    
+    /**
+     * Register services.
+     * @return void
+     */
     private function registerServices(){
         //Register filesystem service
         $this['filesystem'] = $this->share(function(){
             return new Filesystem();
         });
     }
+    
     /**
      * Get configuration directory absolute path.
      * @return string

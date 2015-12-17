@@ -1,1 +1,10 @@
 debug: true
+
+locale: pt_BR
+
+db.options:
+    host: localhost
+    user: root
+    password: 1234
+    driver: pdo_mysql
+    dbname: generic
