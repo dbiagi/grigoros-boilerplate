@@ -1,23 +1,26 @@
 <?php
 
-namespace Application;
+namespace Grigoros;
 
 use Symfony\Component\Console\Application as ConsoleApplication;
 
 /**
  * Description of Console
  *
- * @author Diego Viana <diego.viana@lecom.com.br>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class Console extends ConsoleApplication {
 
-    private $name = 'Silex Console';
-    private $version = '1.0.0';
-
-    public function __construct() {
+    private $name = 'Grígoros Console';
+    private $version = '0.0.1';
+    private $container = null;
+    
+    public function __construct(Application $container) {
 
         parent::__construct($this->name, $this->version);
 
+        $this->container = $container;
+        
         $this->initialize();
     }
 
@@ -46,6 +49,7 @@ class Console extends ConsoleApplication {
             new \Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand(),
             new \Doctrine\ORM\Tools\Console\Command\RunDqlCommand(),
             new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand(),
+            new \Doctrine\ORM\Tools\Console\Command\InfoCommand()
         ];
     }
 

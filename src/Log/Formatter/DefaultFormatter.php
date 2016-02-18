@@ -1,13 +1,13 @@
 <?php
 
-namespace Log\Formatter;
+namespace Grigoros\Log\Formatter;
 
 use Monolog\Formatter\FormatterInterface;
 
 /**
  * Description of DefaultFormatter
  *
- * @author Diego Biagi <diego.viana@lecom.com.br>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class DefaultFormatter implements FormatterInterface{
     public function format(array $record) {

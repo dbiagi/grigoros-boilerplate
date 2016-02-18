@@ -1,0 +1,19 @@
+{
+  "name": "silex-boilerplate",
+  "homepage": "https://github.com/dbiagi/silex-boilerplate",
+  "description": "Silex boilerplate application",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "Diego de Biagi<diegobiagiviana@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

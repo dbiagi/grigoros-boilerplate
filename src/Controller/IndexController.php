@@ -1,16 +1,16 @@
 <?php
 
-namespace Controller;
+namespace Grigoros\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Application;
+use Grigoros\Application;
 use Doctrine\DBAL\Connection;
 
 /**
  * Description of IndexController
  *
- * @author Diego Biagi <diegviana@gmail.com>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class IndexController {
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Provider;
+namespace Grigoros\Provider;
 
 use Silex\ServiceProviderInterface;
 
 /**
  * Description of FakerProvider
  *
- * @author Diego Viana <diego.viana@lecom.com.br>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class FakerProvider implements ServiceProviderInterface {
 

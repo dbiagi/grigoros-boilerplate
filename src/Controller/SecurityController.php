@@ -1,15 +1,15 @@
 <?php
 
-namespace Controller;
+namespace Grigoros\Controller;
 
-use Application\Application;
+use Grigoros\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Description of SecurityController
  *
- * @author Diego Biagi <diego.viana@lecom.com.br>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class SecurityController {
     

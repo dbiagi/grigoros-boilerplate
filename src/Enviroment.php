@@ -1,11 +1,11 @@
 <?php
 
-namespace Application;
+namespace Grigoros;
 
 /**
  * Description of Enviroment
  *
- * @author Diego Biagi <diegviana@gmail.com>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class Enviroment {
     const DEV = 'dev';

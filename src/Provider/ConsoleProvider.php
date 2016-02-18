@@ -1,16 +1,14 @@
 <?php
 
-namespace Provider;
+namespace Grigoros\Provider;
 
 use Silex\ServiceProviderInterface;
-use Application\Application;
-use Application\Console as ConsoleApplication;
-//use Symfony\Component\Console\Application as ConsoleApplication;
+use Grigoros\Console as ConsoleApplication;
 
 /**
  * Description of ConsoleProvider
  *
- * @author Diego Biagi <diegobiagiviana@gmail.com>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class ConsoleProvider implements ServiceProviderInterface {
 
@@ -18,7 +16,7 @@ class ConsoleProvider implements ServiceProviderInterface {
 
     public function register(\Silex\Application $app) {
         $app['console'] = $app->share(function() use ($app) {
-            return new ConsoleApplication();
+            return new ConsoleApplication($app);
         });
     }
 }

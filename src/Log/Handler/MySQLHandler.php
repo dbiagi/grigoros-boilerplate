@@ -1,6 +1,6 @@
 <?php
 
-namespace Log\Handler;
+namespace Grigoros\Log\Handler;
 
 use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;

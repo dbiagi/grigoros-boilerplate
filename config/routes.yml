@@ -1,12 +1,12 @@
 silex_home:
     path: /
-    defaults: { _controller: 'Controller\IndexController::indexAction' }
+    defaults: { _controller: 'Grigoros\Controller\IndexController::indexAction' }
     
 silex_admin:
     path: /admin
-    defaults: { _controller: 'Controller\SecurityController::adminAction' }
+    defaults: { _controller: 'Grigoros\Controller\SecurityController::adminAction' }
     
 rss_test:
     path: /rss
-    defaults: { _controller: 'Controller\IndexController::rssAction' }
+    defaults: { _controller: 'Grigoros\Controller\IndexController::rssAction' }
     

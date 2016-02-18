@@ -1,13 +1,13 @@
 <?php
 
-namespace Util\Xml;
+namespace Grigoros\Util\Xml;
 
 use SimpleXMLElement;
 
 /**
  * Description of ExtendedSimpleXmlElement
  *
- * @author Diego Viana <diego.viana@lecom.com.br>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class ExtendedSimpleXmlElement extends SimpleXMLElement {
 

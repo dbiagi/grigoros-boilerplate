@@ -1,6 +1,6 @@
 <?php
 
-namespace Command;
+namespace Grigoros\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Description of TestCommand
  *
- * @author Diego Biagi <diegobiagiviana@gmail.com>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class TestCommand extends Command {
 

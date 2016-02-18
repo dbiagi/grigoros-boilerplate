@@ -1,9 +1,10 @@
+#!/usr/bin/env php
 <?php
 
 require_once 'vendor/autoload.php';
 
-use Application\Application;
-use Application\Enviroment;
+use Grigoros\Application;
+use Grigoros\Enviroment;
 
 $app = new Application(Enviroment::DEV, __DIR__);
 

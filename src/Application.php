@@ -1,6 +1,6 @@
 <?php
 
-namespace Application;
+namespace Grigoros;
 
 use Silex\Application as SilexApplication;
 use Symfony\Component\Routing\RouteCollection;
@@ -11,7 +11,7 @@ use Symfony\Component\Filesystem\Filesystem;
 /**
  * Description of Main
  *
- * @author Diego Biagi <diegviana@gmail.com>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class Application extends SilexApplication {
 
@@ -109,7 +109,7 @@ class Application extends SilexApplication {
             'http_cache.cache_dir' => $this->getCacheDir()
         ]);
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
-        $this->register(new \Provider\ConsoleProvider());
+        $this->register(new \Grigoros\Provider\ConsoleProvider());
     }
 
     /**
@@ -163,7 +163,7 @@ class Application extends SilexApplication {
         $cacheDir = $this->rootDir . '/cache';
         
         if(!is_dir($cacheDir)){
-            $this['filesystem']->mkdir($cacheDir, 0640);
+            $this['filesystem']->mkdir($cacheDir, 0770);
         }
         
         return $cacheDir;
@@ -179,7 +179,7 @@ class Application extends SilexApplication {
         
         //Create dir is not exists
         if(!is_dir($logDir)){
-            $this['filesystem']->mkdir($logDir, 0640);
+            $this['filesystem']->mkdir($logDir, 0770);
         }
         
         //If on dev env, reset the log file on every request

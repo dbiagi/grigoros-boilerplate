@@ -1,6 +1,6 @@
 <?php
 
-namespace Provider;
+namespace Grigoros\Provider;
 
 use Silex\ServiceProviderInterface;
 use Application\Application;
@@ -10,7 +10,7 @@ use Symfony\Component\Filesystem\Filesystem;
 /**
  * Description of ExtendedLogProvider
  *
- * @author Diego Biagi <diego.viana@lecom.com.br>
+ * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
 class ExtendedMonologProvider implements ServiceProviderInterface {
     
