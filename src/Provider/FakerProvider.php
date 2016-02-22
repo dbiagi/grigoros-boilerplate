@@ -32,7 +32,7 @@ class FakerProvider implements ServiceProviderInterface {
      */
     private function getFakerProviders(){
         return [
-            
+            new \Faker\Provider\pt_BR\PhoneNumber()
         ];
     }
 

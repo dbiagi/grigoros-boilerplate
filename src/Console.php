@@ -14,13 +14,13 @@ class Console extends ConsoleApplication {
     private $name = 'Grígoros Console';
     private $version = '0.0.1';
     private $container = null;
-    
+
     public function __construct(Application $container) {
 
         parent::__construct($this->name, $this->version);
 
         $this->container = $container;
-        
+
         $this->initialize();
     }
 
@@ -33,7 +33,6 @@ class Console extends ConsoleApplication {
             // DBAL Commands
             new \Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
             new \Doctrine\DBAL\Tools\Console\Command\ImportCommand(),
-            
             // ORM Commands
             new \Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand(),
             new \Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand(),
