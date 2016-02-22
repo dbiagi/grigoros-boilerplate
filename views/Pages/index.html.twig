@@ -1,17 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Home Page{% endblock title %}
 {% block content %}
-    <div>
-
+    <div class="container">
         <h1><a href="{{ path('rss_test') }}">Silex App</a></h1>
-
-        <ul>
-            {% for user in data %}
-                <li>
-                    {{ user.name }} | {{ user.email }}
-                </li>
-            {% endfor %}
-        </ul>
-
     </div>
 {% endblock content %}

@@ -1,16 +1,28 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        {% block meta_tags %}
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        {% endblock meta_tags %}
+        
         {% block favicon %}
             <link rel="icon" type="image/x-icon" href="favicon.ico" />
         {% endblock %}
-        <title>Silex Boilerplate</title>
+        
+        <title>{% block title %}Silex Boilerplate{% endblock title %}</title>
+        
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" >
+        {% endblock stylesheets %}
     </head>
 
     <body>
         {% block content %}{% endblock content %}
         
+        {% block javascripts %}
+            <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+            <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        {% endblock javascripts %}
     </body>
 
 </html>

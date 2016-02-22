@@ -1,19 +1,22 @@
 {
-  "name": "silex-boilerplate",
-  "homepage": "https://github.com/dbiagi/silex-boilerplate",
-  "description": "Silex boilerplate application",
-  "main": "",
-  "moduleType": [],
+  "name": "Diego Viana",
+  "version": "0.0.1",
   "authors": [
-    "Diego de Biagi<diegobiagiviana@gmail.com>"
+    "Diego <diegobiagiviana@gmail.com>"
   ],
+  "description": "App web experimental.",
+  "main": "app_dev.php",
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
-  ]
+    "tests",
+    "src"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4"
+  }
 }
