@@ -1,4 +1,4 @@
-DBiagi\UserBundle\Entity\User:
+Grigoros\Entity\User:
     type: entity
     table: user
     id:
@@ -7,6 +7,7 @@ DBiagi\UserBundle\Entity\User:
             id: true
             generator:
                 strategy: AUTO
+    
     
     manyToMany:
         groups:

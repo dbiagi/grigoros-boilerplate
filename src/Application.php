@@ -69,29 +69,29 @@ class Application extends SilexApplication {
         $this->register(new \Silex\Provider\SerializerServiceProvider());
         $this->register(new \Silex\Provider\DoctrineServiceProvider());    
         $this->register(new \Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),[
-            'orm.proxies_dir' => $this->rootDir . '/Entity/Proxy',
+            'orm.proxies_dir' => $this->getConfigDir() . '/proxy',
             'orm.em.options' => [
                 'mappings' => [
                     [
                         'type' => 'annotation',
-                        'namespace' => 'Entity',
+                        'namespace' => 'Grigoros\\Entity',
                         'path' => $this->getSrcDir() . '/Entity'
                     ],
-                    [
+                    /*[
                         'type' => 'annotation',
-                        'namespace' => 'Model',
+                        'namespace' => 'Grigoros\\Model',
                         'path' => $this->getSrcDir() . '/Model'
-                    ],
+                    ],*/
                     [
                         'type' => 'simple_yml',
-                        'namespace' => 'Entity',
+                        'namespace' => 'Grigoros\\Entity',
                         'path' => $this->getConfigDir() . '/doctrine'
                     ],
-                    [
+                    /*[
                         'type' => 'simple_yml',
-                        'namespace' => 'Model',
+                        'namespace' => 'Grigoros\\Model',
                         'path' => $this->getConfigDir() . '/doctrine'
-                    ]
+                    ]*/
                 ]
             ]
         ]);

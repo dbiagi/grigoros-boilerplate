@@ -1,4 +1,4 @@
-DBiagi\UserBundle\Entity\UserGroup:
+Grigoros\Entity\UserGroup:
     type: entity
     table: user_group
     id:

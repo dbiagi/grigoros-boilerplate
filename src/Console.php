@@ -25,11 +25,22 @@ class Console extends ConsoleApplication {
     }
 
     private function initialize() {
+
+        $em = $this->container['orm.em'];
+
+        $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
+            'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),
+            'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
+        ));
+
+        $this->setHelperSet($helperSet);
+
         $this->addCommands($this->getCommands());
     }
 
     public function getCommands() {
         return [
+            
             // DBAL Commands
             new \Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
             new \Doctrine\DBAL\Tools\Console\Command\ImportCommand(),
@@ -48,7 +59,8 @@ class Console extends ConsoleApplication {
             new \Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand(),
             new \Doctrine\ORM\Tools\Console\Command\RunDqlCommand(),
             new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand(),
-            new \Doctrine\ORM\Tools\Console\Command\InfoCommand()
+            new \Doctrine\ORM\Tools\Console\Command\InfoCommand(),
+            new \Grigoros\Command\TestCommand(),
         ];
     }
 

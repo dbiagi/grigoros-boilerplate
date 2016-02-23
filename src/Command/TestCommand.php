@@ -15,13 +15,22 @@ class TestCommand extends Command {
 
     protected function configure() {
         $this
-            ->setName('dbiagi:con')
+            ->setName('com')
             ->setDescription('Teste de comando')
         ;
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $output->writeln('Está executando');
+        $output->writeln('Helpers registrados');
+        
+        $helperSet = $this->getHelperSet();
+        
+        foreach ($helperSet->getIterator() as $helper) {
+            $output->writeln($helper->getName());
+        }
+        
+        $output->writeln('-----------------------');
+        
     }
 
 }
