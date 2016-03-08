@@ -10,3 +10,6 @@ rss_test:
     path: /rss
     defaults: { _controller: 'Grigoros\Controller\IndexController::rssAction' }
     
+silex_test:
+    path: /test
+    defaults: { _controller: 'Grigoros\Controller\IndexController::testAction' }

@@ -8,6 +8,35 @@ Grigoros\Entity\User:
             generator:
                 strategy: AUTO
     
+    fields:
+        password:
+            type: string
+            length: 255
+        username:
+            type: string
+            length: 255
+        usernameCanonical:
+            type: string
+            length: 255
+            column: username_canonical
+        email:
+            type: string
+            length: 255
+        active:
+            type: boolean
+        locked: 
+            type: boolean
+        createdAt:
+            type: date
+            column: created_at
+        lastLoginAt:
+            type: date
+            column: last_login
+            nullable: true
+        roles:
+            type: array
+            nullable: true
+        
     
     manyToMany:
         groups:
