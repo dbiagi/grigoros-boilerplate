@@ -26,7 +26,8 @@
         "igorw/config-service-provider": "^1.2",
         "monolog/monolog": "^1.17",
         "dflydev/doctrine-orm-service-provider": "^1.0",
-        "fzaninotto/faker": "^1.5"
+        "fzaninotto/faker": "^1.5",
+        "guzzlehttp/guzzle": "^6.1"
         
     },
     "require-dev": {

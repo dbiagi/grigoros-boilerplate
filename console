@@ -12,5 +12,17 @@ $app = new Application(Enviroment::DEV, __DIR__);
 
 $app->boot();
 
+/* @var $console \Symfony\Component\Console\Application */
+$console = $app['console'];
+
+$em = $app['orm.em'];
+
+$helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
+    'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),
+    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
+));
+
+$console->setHelperSet($helperSet);
+
 $app['console']->run();
 

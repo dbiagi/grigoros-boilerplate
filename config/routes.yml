@@ -9,7 +9,15 @@ silex_admin:
 rss_test:
     path: /rss
     defaults: { _controller: 'Grigoros\Controller\IndexController::rssAction' }
+
+api_test:
+    path: /api/test
+    defaults: { _controller: 'Grigoros\Controller\ApiController::testAction' }
+
+api_json:
+    path: /api/json
+    defaults: { _controller: 'Grigoros\Controller\ApiController::jsonAction' }
     
-silex_test:
-    path: /test
-    defaults: { _controller: 'Grigoros\Controller\IndexController::testAction' }
+log_request:
+    path: /log
+    defaults: { _controller: 'Grigoros\Controller\IndexController::logAction' }

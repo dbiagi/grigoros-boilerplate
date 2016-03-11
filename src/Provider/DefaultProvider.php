@@ -5,11 +5,11 @@ namespace Grigoros\Provider;
 use Silex\ServiceProviderInterface;
 
 /**
- * Description of FakerProvider
+ * Provide basic services to the application.
  *
  * @author Diego de Biagi <diegobiagiviana@gmail.com>
  */
-class FakerProvider implements ServiceProviderInterface {
+class DefaultProvider implements ServiceProviderInterface {
 
     public function boot(\Silex\Application $app) {}
 
@@ -17,23 +17,11 @@ class FakerProvider implements ServiceProviderInterface {
         $app['faker'] = $app->share(function() use ($app) {
             $generator = \Faker\Factory::create($app['locale']);
             
-            
-            foreach($this->getFakerProviders() as $provider){
-                $generator->addProvider($provider);
-            }
-            
             return $generator;
         });
+        
+        $app['guzzle.client'] = $app->share(function(){
+            return new \GuzzleHttp\Client();
+        });
     }
-    
-    /**
-     * Get custom fake providers.
-     * @return array
-     */
-    private function getFakerProviders(){
-        return [
-            new \Faker\Provider\pt_BR\PhoneNumber()
-        ];
-    }
-
 }

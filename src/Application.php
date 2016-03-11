@@ -57,6 +57,8 @@ class Application extends SilexApplication {
      * @return void
      */
     private function registerProviders() {
+        
+        
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/config_' . $this->getEnviroment() . '.yml'));
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/security' . '.yml'));
         
@@ -185,9 +187,9 @@ class Application extends SilexApplication {
         }
         
         //If on dev env, reset the log file on every request
-        if($this->getEnviroment() === Enviroment::DEV){
+        /*if($this->getEnviroment() === Enviroment::DEV){
             $this['filesystem']->dumpFile($logFile, '');
-        }
+        }*/
         
         return $logFile;
     }

@@ -60,7 +60,9 @@ class Console extends ConsoleApplication {
             new \Doctrine\ORM\Tools\Console\Command\RunDqlCommand(),
             new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand(),
             new \Doctrine\ORM\Tools\Console\Command\InfoCommand(),
-            new \Grigoros\Command\TestCommand(),
+            
+            //My Commands
+            new \Grigoros\Command\TestCommand()
         ];
     }
 

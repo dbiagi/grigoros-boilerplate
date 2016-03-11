@@ -21,16 +21,11 @@ class TestCommand extends Command {
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $output->writeln('Helpers registrados');
+        $output->writeln('Está executando');
         
-        $helperSet = $this->getHelperSet();
+        $em = $this->getHelper('em');
         
-        foreach ($helperSet->getIterator() as $helper) {
-            $output->writeln($helper->getName());
-        }
-        
-        $output->writeln('-----------------------');
-        
+        var_dump($em);
     }
 
 }
