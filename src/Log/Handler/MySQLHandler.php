@@ -70,7 +70,7 @@ class MySQLHandler extends AbstractProcessingHandler {
     private function initialize() {
         $this->pdo->exec(
             'CREATE TABLE IF NOT EXISTS `' . $this->table . '` '
-            . '(channel VARCHAR(255), level INTEGER, message LONGTEXT, time INTEGER UNSIGNED)'
+            . '(id INT NOT NULL AUTO_INCREMENT, channel VARCHAR(255), level INTEGER, message LONGTEXT, time INTEGER UNSIGNED, PRIMARY KEY(id))'
         );
         
         //Read out actual columns
@@ -82,7 +82,7 @@ class MySQLHandler extends AbstractProcessingHandler {
         }
         
         //Calculate changed entries
-        $removedColumns = array_diff($actualFields, $this->additionalFields, array('channel', 'level', 'message', 'time'));
+        $removedColumns = array_diff($actualFields, $this->additionalFields, array('id', 'channel', 'level', 'message', 'time'));
         $addedColumns = array_diff($this->additionalFields, $actualFields);
         
         //Remove columns
@@ -104,9 +104,11 @@ class MySQLHandler extends AbstractProcessingHandler {
             $columns.= ", $f";
             $fields.= ", :$f";
         }
-        $this->statement = $this->pdo->prepare(
+        
+       $this->statement = $this->pdo->prepare(
             'INSERT INTO `' . $this->table . '` (channel, level, message, time' . $columns . ') VALUES (:channel, :level, :message, :time' . $fields . ')'
         );
+        
         $this->initialized = true;
     }
 
@@ -126,7 +128,7 @@ class MySQLHandler extends AbstractProcessingHandler {
             'level' => $record['level'],
             'message' => $record['message'],
             'time' => $record['datetime']->format('U')
-            ), $record['context']);
+            ), /*$record['context']*/ []);
         $this->statement->execute($contentArray);
     }
 
