@@ -36,6 +36,8 @@ class ExtendedMonologProvider implements ServiceProviderInterface {
                 
                 /* @var $monolog \Monolog\Logger */
                 $monolog->pushHandler($mysqlHandler);
+                
+                return $monolog;
             })
         );
     }

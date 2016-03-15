@@ -59,15 +59,14 @@ class Application extends SilexApplication {
     private function registerProviders() {
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/config_' . $this->getEnviroment() . '.yml'));
         $this->register(new \Igorw\Silex\ConfigServiceProvider($this->getConfigDir() . '/security' . '.yml'));
-        $this->register(new \Silex\Provider\MonologServiceProvider(), [
-            'monolog.logfile' => $this->getLogFile()
-        ]);
+        
         $this->register(new \Silex\Provider\HttpCacheServiceProvider());
         $this->register(new \Silex\Provider\SecurityServiceProvider());
         $this->register(new \Silex\Provider\RememberMeServiceProvider());
         $this->register(new \Silex\Provider\SessionServiceProvider());
         $this->register(new \Silex\Provider\SerializerServiceProvider());
         $this->register(new \Silex\Provider\DoctrineServiceProvider());    
+        
         $this->register(new \Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),[
             'orm.proxies_dir' => $this->getConfigDir() . '/proxy',
             'orm.em.options' => [
@@ -109,7 +108,10 @@ class Application extends SilexApplication {
             'http_cache.cache_dir' => $this->getCacheDir()
         ]);
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
+        
+        
         $this->register(new \Grigoros\Provider\ConsoleProvider());
+        $this->register(new \Grigoros\Provider\ExtendedMonologProvider());
     }
 
     /**
