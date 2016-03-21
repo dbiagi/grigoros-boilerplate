@@ -5,7 +5,7 @@
     "Diego <diegobiagiviana@gmail.com>"
   ],
   "description": "App web experimental.",
-  "main": "app_dev.php",
+  "main": "web/index.php",
   "license": "MIT",
   "ignore": [
     "**/.*",
