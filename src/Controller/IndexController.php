@@ -16,22 +16,7 @@ use Doctrine\DBAL\Connection;
 class IndexController {
 
     public function indexAction(Application $app, Request $request) {
-        $response = new Response($app['twig']->render('Pages/index.html.twig'), 200);
-        
-        $response->setTtl(30);
-        
-        return $response;
+        return new Response($app['twig']->render('Pages/index.html.twig'), 200);
     }
-    
-    public function testAction(Application $app){
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $app['orm.em'];
-        
-        /* @var $repository \Doctrine\ORM\EntityRepository */
-        $repository = $em->getRepository(\Grigoros\Entity\User::class);
-        
-        $results = $repository->findAll();
-        
-        return new JsonResponse($results, JsonResponse::HTTP_OK);
-    }
+
 }

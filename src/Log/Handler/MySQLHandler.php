@@ -127,7 +127,7 @@ class MySQLHandler extends AbstractProcessingHandler {
             'channel' => $record['channel'],
             'level' => $record['level'],
             'message' => $record['message'],
-            'time' => $record['datetime']->format('U')
+            'time' => $record['datetime']->format('Y-m-d G:i:s')
             ), /*$record['context']*/ []);
         $this->statement->execute($contentArray);
     }

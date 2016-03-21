@@ -25,7 +25,7 @@ class ExtendedMonologProvider implements ServiceProviderInterface {
         $app['monolog'] = $app->share(
             $app->extend('monolog', function($monolog, $app) {
                 $mysqlHandler = new \Grigoros\Log\Handler\MySQLHandler(
-                    $app['db']->getWrappedConnection(), 'log', [], Logger::DEBUG, true
+                    $app['db']->getWrappedConnection(), 'log', [], Logger::WARNING
                 );
                 
                 $monolog->pushHandler($mysqlHandler);
