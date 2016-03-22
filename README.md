@@ -1,7 +1,9 @@
 # grigoros-boilerplate
 
 This is a silex application skeleton named Grigoros.
+
 This package come with handy tools out of the box to increasy development productivity.
+
 Fits like a glove for small projects, and projects that require a quick development.
 
 ## Features
@@ -16,26 +18,36 @@ Fits like a glove for small projects, and projects that require a quick developm
 
 ## Instalation
 
-Clone the repository
+### 1. Clone the repository
 ```
 git clone https://github.com/dbiagi/silex-boilerplate.git
 ```
 
-Install dependencies
+### 2. Install dependencies
 ```
 composer install
 npm install
 bower install
 ```
 
-_Optional_: If vue will be used in your project, run these followings commands to install browserify and compile vue components respectively.
+### 3. Database parameters
+Update the config/config_[ENV].yml, with your database connection info.
+```yaml
+# config/config_dev.yml
+db.options:
+    host: localhost
+    user: root
+    password: 123
+    driver: pdo_mysql
+    dbname: grigoros
+```
 
+### _Optional_ 
+If vue will be used in your project, run these followings commands to install browserify and compile vue components respectively.
 ```
 npm install -g browserify
 grunt vueify
 ```
-
-Create the config/parameters.yml with db settings
 
 TODO
 * Configure swiftmailer provider
