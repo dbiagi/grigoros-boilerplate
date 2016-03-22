@@ -1,23 +1,27 @@
 {
-    "name": "Diego Viana",
-    "version": "0.0.1",
-    "authors": [
-        "Diego <diegobiagiviana@gmail.com>"
-    ],
-    "description": "App web experimental.",
-    "main": "web/index.php",
-    "license": "MIT",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests",
-        "src"
-    ],
-    "dependencies": {
-        "bootstrap": "~3.3.4",
-        "jquery": "~2.1.4",
-        "vue": "~1.0.18"
-    }
+  "name": "Diego Viana",
+  "version": "0.0.1",
+  "authors": [
+    "Diego <diegobiagiviana@gmail.com>"
+  ],
+  "description": "App web experimental.",
+  "main": "web/index.php",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "vue": "~1.0.18",
+    "bootstrap-material-design": "~4.0.1"
+  },
+  "resolutions": {
+    "bootstrap": "~3.3.4"
+  }
 }

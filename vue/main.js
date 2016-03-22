@@ -1,9 +1,9 @@
 var Vue = require('vue');
-var App = require('./c.vue');
+var UsersTable = require('./table.vue');
 
 new Vue({
-  el: 'body',
+  el: "body",
   components: {
-    app: App
+    "users-table": UsersTable
   }
 });
