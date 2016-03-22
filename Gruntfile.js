@@ -27,11 +27,11 @@ module.exports = function (grunt) {
             done = grunt.task.current.async(),
             config = grunt.config('vueify'),
             command = 'browserify -t vueify -e ' + config.input + ' -o ' + config.output;
-        log(command);
+        
         exec(command, function (error, stdout, stderr) {
             log(stdout);
             done(error);
         });
-        // browserify -t vueify -e vue/main.js -o web/build.js
+        
     });
 };

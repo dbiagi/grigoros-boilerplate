@@ -1,7 +1,6 @@
 /vendor/
-/cache/
+/tmp/
 /nbproject/
-/log/
 /config/parameters.yml
 /web/lib/
 /node_modules/

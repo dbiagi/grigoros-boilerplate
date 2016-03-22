@@ -17,11 +17,6 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "jquery": "~2.1.4",
-    "vue": "~1.0.18",
-    "bootstrap-material-design": "~4.0.1"
-  },
-  "resolutions": {
-    "bootstrap": "~3.3.4"
+    "jquery": "~2.1.4"
   }
 }

@@ -156,7 +156,7 @@ class Application extends SilexApplication {
      * @return string
      */
     public function getViewDir() {
-        return $this->rootDir . '/views';
+        return $this->rootDir . '/resources/views';
     }
 
     /**
@@ -164,7 +164,7 @@ class Application extends SilexApplication {
      * @return string
      */
     public function getCacheDir() {
-        $cacheDir = $this->rootDir . '/cache';
+        $cacheDir = $this->getTmpDir() . '/cache';
         
         if(!is_dir($cacheDir)){
             $this['filesystem']->mkdir($cacheDir, 0770);
@@ -178,19 +178,14 @@ class Application extends SilexApplication {
      * @return string
      */
     public function getLogFile(){
-        $logDir = $this->rootDir . '/log';
+        $logDir = $this->getTmpDir() . '/log';
         $logFile = $logDir . '/' . $this->getEnviroment() . '.log';
         
         //Create dir is not exists
         if(!is_dir($logDir)){
             $this['filesystem']->mkdir($logDir, 0770);
         }
-        
-        //If on dev env, reset the log file on every request
-        /*if($this->getEnviroment() === Enviroment::DEV){
-            $this['filesystem']->dumpFile($logFile, '');
-        }*/
-        
+                
         return $logFile;
     }
 
@@ -201,13 +196,14 @@ class Application extends SilexApplication {
     public function getEnviroment() {
         return $this->env;
     }
-    
-    /**
-     * Get log directory.
-     * @return string
-     */
-    public function getLogDir(){
-        return $this->logDir;
-    }
 
+    public function getTmpDir(){
+        $tmpDir = $this->rootDir . '/tmp';
+        
+        if(!is_dir($tmpDir)){
+            $this['filesystem']->mkdir($tmpDir, 0770);
+        }
+        
+        return $tmpDir;
+    }
 }
