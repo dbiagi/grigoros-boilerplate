@@ -1,28 +1,23 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        {% block meta_tags %}
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        {% endblock meta_tags %}
-        
-        {% block favicon %}
-            <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        {% endblock %}
-        
-        <title>{% block title %}Silex Boilerplate{% endblock title %}</title>
-        
-        {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css" >
-        {% endblock stylesheets %}
-    </head>
 
-    <body>
-        {% block content %}{% endblock content %}
-        
-        {% block javascripts %}
-            <script src="/lib/jquery/dist/jquery.min.js"></script>
-            <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        {% endblock javascripts %}
-    </body>
+<head>
+    {% block meta_tags %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> {% endblock meta_tags %} {% block favicon %}
+    <link rel="icon" type="image/x-icon" href="favicon.ico" /> {% endblock %}
+
+    <title>{% block title %}Silex Boilerplate{% endblock title %}</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css"> {% endblock stylesheets %}
+</head>
+
+<body>
+    {% block content %}{% endblock content %} {% block javascripts %}
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/build.js"></script>
+    {% endblock javascripts %}
+</body>
 
 </html>
