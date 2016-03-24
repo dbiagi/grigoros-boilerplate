@@ -9,7 +9,7 @@
         </h1>
 
         <div class="container">
-            <users-table></users-table>
+            <data-table :data="{{ users | json_encode() }}"></users-table>
         </div>
 
     </div>

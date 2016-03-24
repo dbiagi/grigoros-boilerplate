@@ -5,35 +5,40 @@
 </style>
 
 <template>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="user in users">
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <h2>{{ data.title }}</h2>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th v-for="h in headers">{{ h }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in data.collection">
+                    <td v-for="val in row">
+                        {{ val }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
     module.exports = {
-        data: function() {
-            return {
-                users: [
-                    { id: 1, name: "Test 1", email: "diego@invalid.com" },
-                    { id: 2, name: "Test 2", email: "diego@invalid.com" },
-                    { id: 3, name: "Test 3", email: "diego@invalid.com" },
-                    { id: 4, name: "Test 4", email: "diego@invalid.com" },
-                    { id: 5, name: "Test 5", email: "diego@invalid.com" },
-                ]
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        },
+        computed: {
+            headers: function () {
+                if (this.data.collection.length > 0) {
+                    return _.keys(this.data.collection[0]);
+                }
+
+                return [];
             }
         }
     }
