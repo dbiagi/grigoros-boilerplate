@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             scripts: {
-                files: ['vue/*.vue', 'vue/main.js'],
+                files: ['resources/vue/*.vue', 'resources/vue/main.js'],
                 tasks: ['vueify'],
                 options: {
                     spawn: false
@@ -13,7 +13,7 @@ module.exports = function (grunt) {
             }
         },
         vueify: {
-            input: 'vue/main.js',
+            input: 'resources/vue/main.js',
             output: 'web/js/build.vue.js'
         }
     });
@@ -27,11 +27,11 @@ module.exports = function (grunt) {
             done = grunt.task.current.async(),
             config = grunt.config('vueify'),
             command = 'browserify -t vueify -e ' + config.input + ' -o ' + config.output;
-        
+
         exec(command, function (error, stdout, stderr) {
             log(stdout);
             done(error);
         });
-        
+
     });
 };
