@@ -111,7 +111,7 @@ class Application extends SilexApplication {
         ]);
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         
-        
+        $this->register(new \Grigoros\Provider\DefaultProvider());
         $this->register(new \Grigoros\Provider\ConsoleProvider());
         $this->register(new \Grigoros\Provider\ExtendedMonologProvider());
     }
