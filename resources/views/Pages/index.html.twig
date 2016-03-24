@@ -8,9 +8,10 @@
             <a href="{{ path('silex_home') }}">Silex App</a>
         </h1>
 
-        <div class="container">
-            <data-table :data="{{ users | json_encode() }}"></users-table>
+        <div>
+            <data-table :data="{{ users | json_encode() }}"></data-table>
         </div>
-
     </div>
+
+    {% include 'Vue/data_table.html.twig' %}
 {% endblock %}
