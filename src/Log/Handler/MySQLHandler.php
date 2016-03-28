@@ -119,9 +119,14 @@ class MySQLHandler extends AbstractProcessingHandler {
      * @return void
      */
     protected function write(array $record) {
+        if(!isset($record['context']['persist']) || !$record['context']['persist']){
+            return;
+        }
+        
         if (!$this->initialized) {
             $this->initialize();
         }
+        
         //'context' contains the array
         $contentArray = array_merge(array(
             'channel' => $record['channel'],
@@ -129,6 +134,7 @@ class MySQLHandler extends AbstractProcessingHandler {
             'message' => $record['message'],
             'time' => $record['datetime']->format('Y-m-d G:i:s')
             ), /*$record['context']*/ []);
+        
         $this->statement->execute($contentArray);
     }
 

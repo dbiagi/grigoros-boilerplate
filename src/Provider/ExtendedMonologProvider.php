@@ -3,7 +3,6 @@
 namespace Grigoros\Provider;
 
 use Silex\ServiceProviderInterface;
-use Monolog\Logger;
 use Silex\Application;
 
 /**
@@ -25,7 +24,7 @@ class ExtendedMonologProvider implements ServiceProviderInterface {
         $app['monolog'] = $app->share(
             $app->extend('monolog', function($monolog, $app) {
                 $mysqlHandler = new \Grigoros\Log\Handler\MySQLHandler(
-                    $app['db']->getWrappedConnection(), 'log', [], Logger::WARNING
+                    $app['db']->getWrappedConnection(), 'log', []
                 );
                 
                 $monolog->pushHandler($mysqlHandler);
